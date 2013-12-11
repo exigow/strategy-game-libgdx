@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/strategy-game-libgdx.iml" filepath="$PROJECT_DIR$/strategy-game-libgdx.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../strategy-game-libgdx-android/strategy-game-libgdx-android.iml" filepath="$PROJECT_DIR$/../strategy-game-libgdx-android/strategy-game-libgdx-android.iml" />
     </modules>
   </component>
 </project>

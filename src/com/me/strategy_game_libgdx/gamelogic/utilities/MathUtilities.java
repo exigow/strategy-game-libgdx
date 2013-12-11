@@ -18,7 +18,7 @@ public class MathUtilities {
         return pointDistance(a.x, a.y, b.x, b.y);
     }
     public static float pointDistance(float ax, float ay, float bx, float by) {
-        return (float)sqrt(Math.pow((bx - ax), 2) + pow((by - ay), 2));
+        return (float)sqrt(pow((bx - ax), 2) + pow((by - ay), 2));
     }
 
     // point -> rectangle distance

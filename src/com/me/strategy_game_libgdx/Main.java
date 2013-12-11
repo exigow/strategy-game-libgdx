@@ -4,6 +4,8 @@ import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.me.strategy_game_libgdx.gamelogic.systems.Camera;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -21,6 +23,8 @@ import com.me.strategy_game_libgdx.gamelogic.systems.*;
 import com.me.strategy_game_libgdx.gamelogic.systems.controller.Controller;
 import com.me.strategy_game_libgdx.gamelogic.systems.controller.UserInterface;
 import com.me.strategy_game_libgdx.gamelogic.utilities.*;
+
+import java.io.*;
 
 
 // UI PIORITY COLORS:
@@ -53,12 +57,25 @@ public class Main implements ApplicationListener {
     UserInterface userInterface;
 
     public static void main(String[] args) {
-        LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
-        cfg.fullscreen = false;
-        cfg.width = Main.WINDOW_SIZE_W;
-        cfg.height = Main.WINDOW_SIZE_H;
-        cfg.useGL20 = true;
-        cfg.resizable = false;
+        LwjglApplicationConfiguration cfg = null;
+
+        // Config.
+        Gson gson = new Gson();
+        InputStream inputStream;
+        try {
+            // Odczyt pliku i parsing.
+            inputStream = new FileInputStream("c:\\config.json");
+            Reader data = new InputStreamReader(inputStream);
+            cfg = gson.fromJson(data, LwjglApplicationConfiguration.class);
+        } catch (FileNotFoundException e) {
+            // Jesli zabraknie pliku, default.
+            cfg = new LwjglApplicationConfiguration();
+            cfg.fullscreen = false;
+            cfg.width = 640;
+            cfg.height = 480;
+            cfg.useGL20 = true;
+            cfg.resizable = false;
+        }
         new LwjglApplication(new Main(), cfg);
     }
 
